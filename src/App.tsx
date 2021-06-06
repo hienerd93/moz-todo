@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function App() {
   return (
@@ -38,10 +38,11 @@ function App() {
           <span className="visually-hidden"> tasks</span>
         </button>
       </div>
-      <h2 id="list-heading">
-        3 tasks remaining
-      </h2>
-      <ul className="todo-list stack-large stack-exception" aria-labelledby="list-heading">
+      <h2 id="list-heading">3 tasks remaining</h2>
+      <ul
+        className="todo-list stack-large stack-exception"
+        aria-labelledby="list-heading"
+      >
         <li className="todo stack-small">
           <div className="c-cb">
             <input id="todo-0" type="checkbox" defaultChecked={true} />
