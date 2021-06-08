@@ -4,6 +4,7 @@ import Form from "./components/Form";
 import Todo from "./components/Todo";
 import { TodoStatus } from "./data/TodoStatus";
 import { nanoid } from "nanoid";
+import { usePrevious } from "./services/usePrevious";
 
 interface AppProp {
   tasks: TodoStatus[];
@@ -17,19 +18,11 @@ const FILTER_MAP: { [key: string]: (task: TodoStatus) => boolean } = {
 
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
-const usePrevious = (value: any) => {
-  const ref = React.useRef();
-  React.useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-};
-
 function App(props: AppProp) {
   const [tasks, setTasks] = React.useState(props.tasks);
   const [filter, setFilter] = React.useState("All");
   const listHeadingRef = React.useRef<HTMLHeadingElement>(null);
-  const prevTaskLength = usePrevious(tasks.length);
+  const prevTaskLength = usePrevious<number>(tasks.length);
 
   const addTask = (name: string) => {
     const newTask = { id: "todo-" + nanoid(), name: name, completed: false };
@@ -59,7 +52,7 @@ function App(props: AppProp) {
   }
 
   React.useEffect(() => {
-    if (tasks.length - (prevTaskLength || 0) === -1) {
+    if (tasks.length - prevTaskLength === -1) {
       listHeadingRef.current?.focus();
     }
   }, [tasks.length, prevTaskLength]);
