@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./index.scss";
 import App from "./App";
 
 const DATA = [
@@ -9,4 +9,9 @@ const DATA = [
   { id: "todo-2", name: "Repeat", completed: false },
 ];
 
-ReactDOM.render(<App tasks={DATA} />, document.getElementById("root"));
+ReactDOM.render(
+  <React.StrictMode>
+    <App tasks={DATA} />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
