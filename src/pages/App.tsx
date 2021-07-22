@@ -1,10 +1,10 @@
 import React from "react";
-import FilterButton from "./components/FilterButton";
-import Form from "./components/Form";
-import Todo from "./components/Todo";
-import { TodoStatus } from "./data/TodoStatus";
+import FilterButton from "../components/FilterButton";
+import Form from "../components/Form";
+import Todo from "../components/Todo";
+import { TodoStatus } from "../core/constants/TodoStatus";
 import { nanoid } from "nanoid";
-import { usePrevious } from "./services/usePrevious";
+import { usePrevious } from "../hooks/usePrevious";
 
 interface AppProp {
   tasks: TodoStatus[];
@@ -52,7 +52,7 @@ function App(props: AppProp) {
   }
 
   React.useEffect(() => {
-    if (tasks.length - prevTaskLength === -1) {
+    if (prevTaskLength && tasks.length - prevTaskLength === -1) {
       listHeadingRef.current?.focus();
     }
   }, [tasks.length, prevTaskLength]);
