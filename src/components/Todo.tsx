@@ -1,7 +1,8 @@
 import React from "react";
-import { TodoStatus } from "../core/constants/TodoStatus";
-
-interface TodoProp extends TodoStatus {
+interface TodoProp {
+  name: string;
+  completed: boolean;
+  id: string;
   toggleTaskCompleted: (id: string) => void;
   deleteTask: (id: string) => void;
   editTask: (id: string, newName: string) => void;
