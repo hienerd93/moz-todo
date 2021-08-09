@@ -3,14 +3,15 @@ import FilterButton from "../components/FilterButton";
 import Form from "../components/Form";
 import Todo from "../components/Todo";
 import { TodoStatus } from "../core/constants/TodoStatus";
-import { nanoid } from "nanoid";
 import { usePrevious } from "../hooks/usePrevious";
-
-const DATA: TodoStatus[] = [
-  { id: "todo-0", name: "Eat", completed: true },
-  { id: "todo-1", name: "Sleep", completed: false },
-  { id: "todo-2", name: "Repeat", completed: false },
-];
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addTodo,
+  deleteTodo,
+  editTodo,
+  toggleTodoCompleted,
+} from "../store/todoSlice";
+import { RootState } from "../store/store";
 
 const FILTER_MAP: { [key: string]: (task: TodoStatus) => boolean } = {
   All: () => true,
@@ -21,37 +22,27 @@ const FILTER_MAP: { [key: string]: (task: TodoStatus) => boolean } = {
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 export default function TodoPages() {
-  const [tasks, setTasks] = React.useState(DATA);
+  const tasks = useSelector((state: RootState) => state.todo.todoList);
+  const dispatch = useDispatch();
   const [filter, setFilter] = React.useState("All");
   const listHeadingRef = React.useRef<HTMLHeadingElement>(null);
   const prevTaskLength = usePrevious<number>(tasks.length);
 
   const addTask = (name: string) => {
-    const newTask = { id: "todo-" + nanoid(), name: name, completed: false };
-    setTasks([...tasks, newTask]);
+    if (name === "") return;
+    dispatch(addTodo(name));
   };
   const toggleTaskCompleted = (id: string) => {
-    const updatedTasks = tasks.map((task) => {
-      if (id === task.id) {
-        return { ...task, completed: !task.completed };
-      }
-      return task;
-    });
-    setTasks(updatedTasks);
+    dispatch(toggleTodoCompleted(id));
   };
   const deleteTask = (id: string) => {
-    const remainingTasks = tasks.filter((task) => task.id !== id);
-    setTasks(remainingTasks);
+    dispatch(deleteTodo(id));
   };
-  function editTask(id: string, newName: string) {
-    const editedTaskList = tasks.map((task) => {
-      if (id === task.id) {
-        return { ...task, name: newName };
-      }
-      return task;
-    });
-    setTasks(editedTaskList);
-  }
+  const editTask = (id: string, newName: string) => {
+    if (newName === "") return;
+
+    dispatch(editTodo({ id, newName }));
+  };
 
   React.useEffect(() => {
     if (prevTaskLength && tasks.length - prevTaskLength === -1) {
