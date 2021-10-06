@@ -1,12 +1,12 @@
 import React from "react";
-interface TodoProp {
+type TodoProp = {
   name: string;
   completed: boolean;
   id: string;
   toggleTaskCompleted: (id: string) => void;
   deleteTask: (id: string) => void;
   editTask: (id: string, newName: string) => void;
-}
+};
 
 const Todo: React.VFC<TodoProp> = ({
   name,

@@ -1,8 +1,8 @@
 import React from "react";
 
-interface FormProp {
+type FormProp = {
   addTask: (name: string) => void;
-}
+};
 
 const Form: React.VFC<FormProp> = ({ addTask }) => {
   const [name, setName] = React.useState("");

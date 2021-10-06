@@ -1,10 +1,10 @@
 import React from "react";
 
-interface ButtonProp {
+type ButtonProp = {
   name: string;
   isPressed: boolean;
   setFilter: (name: string) => void;
-}
+};
 
 const FilterButton: React.VFC<ButtonProp> = ({
   name,
