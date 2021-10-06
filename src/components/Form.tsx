@@ -1,10 +1,10 @@
 import React from "react";
 
-type FormProp = {
+type FormProps = {
   addTask: (name: string) => void;
 };
 
-const Form: React.VFC<FormProp> = ({ addTask }) => {
+const Form: React.VFC<FormProps> = ({ addTask }) => {
   const [name, setName] = React.useState("");
 
   const handleSubmit = (e: React.SyntheticEvent) => {

@@ -24,11 +24,11 @@ const fakeAuth = {
   },
 };
 
-interface ContextProps {
+type ContextProps = {
   user: string | null;
   signIn: (cb: any) => void;
   signOut: (cb: any) => void;
-}
+};
 
 const authContext = createContext({} as ContextProps);
 

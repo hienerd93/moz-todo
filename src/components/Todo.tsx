@@ -1,5 +1,5 @@
 import React from "react";
-type TodoProp = {
+type TodoProps = {
   name: string;
   completed: boolean;
   id: string;
@@ -8,7 +8,7 @@ type TodoProp = {
   editTask: (id: string, newName: string) => void;
 };
 
-const Todo: React.VFC<TodoProp> = ({
+const Todo: React.VFC<TodoProps> = ({
   name,
   completed,
   id,

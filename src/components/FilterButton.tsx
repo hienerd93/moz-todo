@@ -1,12 +1,12 @@
 import React from "react";
 
-type ButtonProp = {
+type ButtonProps = {
   name: string;
   isPressed: boolean;
   setFilter: (name: string) => void;
 };
 
-const FilterButton: React.VFC<ButtonProp> = ({
+const FilterButton: React.VFC<ButtonProps> = ({
   name,
   isPressed,
   setFilter,
