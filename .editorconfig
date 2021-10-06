@@ -1,0 +1,10 @@
+root = true
+
+# Set default charset
+[*.{ts,tsx}]
+charset = utf-8
+
+# 2 space indentation
+[*.{tsx,ts}]
+indent_style = space
+indent_size = 2
