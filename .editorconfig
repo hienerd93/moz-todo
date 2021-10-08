@@ -1,10 +1,10 @@
 root = true
 
 # Set default charset
-[*.{ts,tsx}]
+[*.{ts,tsx,js}]
 charset = utf-8
 
 # 2 space indentation
-[*.{tsx,ts}]
+[*.{tsx,ts,js}]
 indent_style = space
 indent_size = 2
