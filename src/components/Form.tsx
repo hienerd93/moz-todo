@@ -1,4 +1,4 @@
-import { useState, ChangeEventHandler, SyntheticEvent } from "react";
+import { useState } from "react";
 
 type FormProps = {
   addTask: (name: string) => void;
@@ -7,12 +7,12 @@ type FormProps = {
 export default function Form({ addTask }: FormProps) {
   const [name, setName] = useState("");
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     addTask(name);
     setName("");
   };
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleChange = (e: any) => {
     setName(e.target.value);
   };
 

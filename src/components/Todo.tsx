@@ -1,10 +1,4 @@
-import {
-  useState,
-  useEffect,
-  useRef,
-  ChangeEventHandler,
-  SyntheticEvent,
-} from "react";
+import { useState, useEffect, useRef } from "react";
 
 type TodoProps = {
   name: string;
@@ -28,10 +22,10 @@ export default function Todo({
   const editFieldRef = useRef<HTMLInputElement>(null);
   const editButtonRef = useRef<HTMLButtonElement>(null);
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleChange = (e: any) => {
     setNewName(e.target.value);
   };
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     editTask(id, newName);
     setNewName("");

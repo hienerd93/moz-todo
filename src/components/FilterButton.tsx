@@ -1,5 +1,3 @@
-import React from "react";
-
 type ButtonProps = {
   name: string;
   isPressed: boolean;
