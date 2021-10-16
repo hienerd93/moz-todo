@@ -1,18 +1,18 @@
-import React from "react";
+import { useState, ChangeEventHandler, SyntheticEvent } from "react";
 
 type FormProps = {
   addTask: (name: string) => void;
 };
 
-const Form: React.VFC<FormProps> = ({ addTask }) => {
-  const [name, setName] = React.useState("");
+export default function Form({ addTask }: FormProps) {
+  const [name, setName] = useState("");
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     addTask(name);
     setName("");
   };
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setName(e.target.value);
   };
 
@@ -37,6 +37,4 @@ const Form: React.VFC<FormProps> = ({ addTask }) => {
       </button>
     </form>
   );
-};
-
-export default Form;
+}

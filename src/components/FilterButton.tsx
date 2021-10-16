@@ -6,11 +6,11 @@ type ButtonProps = {
   setFilter: (name: string) => void;
 };
 
-const FilterButton: React.VFC<ButtonProps> = ({
+export default function FilterButton({
   name,
   isPressed,
   setFilter,
-}) => {
+}: ButtonProps) {
   return (
     <button
       type="button"
@@ -23,6 +23,4 @@ const FilterButton: React.VFC<ButtonProps> = ({
       <span className="visually-hidden"> tasks</span>
     </button>
   );
-};
-
-export default FilterButton;
+}

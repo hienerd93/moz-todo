@@ -14,6 +14,8 @@ const initialState: TodoState = {
   ],
 };
 
+// TODO: write with create Async Thunk handle call api
+
 export const todoSlice = createSlice({
   name: "todo",
   initialState,
@@ -53,6 +55,7 @@ export const todoSlice = createSlice({
       });
       state.todoList = updatedTasks;
     },
+    // TODO: use create Async Thunk get payload
   },
 });
 

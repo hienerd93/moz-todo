@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useRef, useEffect } from "react";
 import FilterButton from "../components/FilterButton";
 import Form from "../components/Form";
 import Todo from "../components/Todo";
@@ -24,8 +24,8 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 export default function TodoPages() {
   const tasks = useSelector((state: RootState) => state.todo.todoList);
   const dispatch = useDispatch();
-  const [filter, setFilter] = React.useState("All");
-  const listHeadingRef = React.useRef<HTMLHeadingElement>(null);
+  const [filter, setFilter] = useState("All");
+  const listHeadingRef = useRef<HTMLHeadingElement>(null);
   const prevTaskLength = usePrevious<number>(tasks.length);
 
   const addTask = (name: string) => {
@@ -44,7 +44,7 @@ export default function TodoPages() {
     dispatch(editTodo({ id, newName }));
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (prevTaskLength && tasks.length - prevTaskLength === -1) {
       listHeadingRef.current?.focus();
     }

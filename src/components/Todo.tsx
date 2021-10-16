@@ -1,4 +1,11 @@
-import React from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  ChangeEventHandler,
+  SyntheticEvent,
+} from "react";
+
 type TodoProps = {
   name: string;
   completed: boolean;
@@ -8,30 +15,30 @@ type TodoProps = {
   editTask: (id: string, newName: string) => void;
 };
 
-const Todo: React.VFC<TodoProps> = ({
+export default function Todo({
   name,
   completed,
   id,
   toggleTaskCompleted,
   deleteTask,
   editTask,
-}) => {
-  const [isEditing, setEditing] = React.useState(false);
-  const [newName, setNewName] = React.useState("");
-  const editFieldRef = React.useRef<HTMLInputElement>(null);
-  const editButtonRef = React.useRef<HTMLButtonElement>(null);
+}: TodoProps) {
+  const [isEditing, setEditing] = useState(false);
+  const [newName, setNewName] = useState("");
+  const editFieldRef = useRef<HTMLInputElement>(null);
+  const editButtonRef = useRef<HTMLButtonElement>(null);
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setNewName(e.target.value);
   };
-  const handleSubmit = (e: React.SyntheticEvent) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     editTask(id, newName);
     setNewName("");
     setEditing(false);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isEditing) {
       editFieldRef.current?.focus();
     } else {
@@ -104,6 +111,4 @@ const Todo: React.VFC<TodoProps> = ({
   );
 
   return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>;
-};
-
-export default Todo;
+}
